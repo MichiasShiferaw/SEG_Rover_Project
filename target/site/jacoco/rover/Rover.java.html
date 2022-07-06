@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Rover.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mutation</a> &gt; <a href="index.source.html" class="el_package">rover</a> &gt; <span class="el_source">Rover.java</span></div><h1>Rover.java</h1><pre class="source lang-java linenums">package rover;
+
+import java.util.Scanner;
+
+
+/**
+ * A class representing a Rover’s mobility implementation. This class has common traits of a Rover such as its current state represented by an enum (a special collection) value as well as another
+ *  enum to indicate whether the Rover's engine is running or not. The Rover machine also has a plethora of behaviors like by pressing the left pedal once, it will accelerate forward or press both
+ *  pedals simultaneously, the Rover will brake). Each method below represents the behaviour of a Rover.
+ *  @author Michias Shiferaw
+ *  @version 2.0
+ *  @since 2022-05-28
+ */
+
+public class Rover{
+
+    //Rover Functional Attributes
+    /**Initialize an enum collection that consists of the state a Rover can have*/
+<span class="fc" id="L19">    public enum State {</span>
+        /**State of when the engine is off*/
+<span class="fc" id="L21">        engineOff,</span>
+        /** State of when the Rover is on*/
+<span class="fc" id="L23">        vehiculeOn}</span>
+    /**Initialize an enum collection that consists of the state a Rover can have turn the engine is running*/
+<span class="fc" id="L25">    public enum StateVehiculeOn {</span>
+        /**Null State*/
+<span class="fc" id="L27">        Null,</span>
+        /** Park State*/
+<span class="fc" id="L29">        park,</span>
+        /** Neutral state*/
+<span class="fc" id="L31">        neutral,</span>
+        /** Accelerating Forward State*/
+<span class="fc" id="L33">        accelerateforward,</span>
+        /** Constant Speed Forward State*/
+<span class="fc" id="L35">        constantspeedforward,</span>
+        /** Deaccelerate Forward State*/
+<span class="fc" id="L37">        deaccelerateforward,</span>
+        /** Turning State*/
+<span class="fc" id="L39">        turn,</span>
+        /** Braking State*/
+<span class="fc" id="L41">        brake,</span>
+        /** Deaccelerating Backward State*/
+<span class="fc" id="L43">        deacceleratebackwards,</span>
+        /** Accelerating Backwards*/
+<span class="fc" id="L45">        acceleratebackwards,</span>
+        /** Constant Speed Backwards*/
+<span class="fc" id="L47">        constantspeedbackwards}</span>
+    //Initialize a null state variable
+    private State state;
+    //Initialize a null-stateVehiculeOn variable
+    private StateVehiculeOn stateVehiculeOn;
+    //Initialize a String variable that intends to be used as the output source
+    private String msg;
+<span class="fc" id="L54">    private Rover.StateVehiculeOn prev1 = stateVehiculeOn; //Initialize a StateVehiculeOn variable that holds the previous state of the Rover object</span>
+
+    /**This method CREATE a NEW Rover objects that is set to engine off*/
+<span class="fc" id="L57">    public Rover(){</span>
+<span class="fc" id="L58">        setStateVehiculeOn(StateVehiculeOn.Null);</span>
+<span class="fc" id="L59">        setState(State.engineOff);}</span>
+
+
+    /** This method is used to take the users input how the number of seconds in order to determine if the change of the state is then successful
+     * @return a integer value that corresponds to the users inputs*/
+    private static int setTime(int val){
+<span class="fc" id="L65">        Scanner sc=null;</span>
+        //sc=new Scanner(System.in);
+<span class="fc" id="L67">        int time=0;</span>
+<span class="fc" id="L68">        System.out.println(&quot;How long (in seconds) are you holding the pedals or buttons for?&quot;);</span>
+<span class="fc" id="L69">        time = val;</span>
+        //sc.nextInt();
+        //sc = null;
+<span class="fc" id="L72">        return time;</span>
+    }
+    /** This method is used to show that the change of state was unsuccessful
+     * @param state1 the current state of the Rover, used to vocalize that the state remains unchanged
+     * @return a String that announces the Rover will remain at the current state */
+    private String noChange(StateVehiculeOn state1){
+<span class="fc" id="L78">        return (&quot; the buggy will remain at &quot;+ stateVehiculeOn) +&quot;.&quot;;}</span>
+    /** This method is used to show that the change of state when the Rover is on was unsuccessful
+     * @param state1 the current state of the Rover, used to vocalize that the state remains unchanged
+     * @return a String that announces the Rover will remain at the current state */
+    //private String noChange(State state1) {return (&quot; the buggy will remain at still, on the&quot; + state1) + &quot; state.&quot;;}
+
+    /** This method is getter that converts the state of the Rover into an output string
+     * @return a String depicts the current state of the buggy */
+    //public String getStateFullName(){String answer = state.toString();if (stateVehiculeOn != StateVehiculeOn.Null) { answer += &quot;.&quot; + stateVehiculeOn.toString(); }return answer;}
+
+    /** This method is a getter for the current state of the Rover
+     * @return state, the current state of the Rover (i.e. VehiculeOn or engineOff) */
+<span class="fc" id="L90">    public State getState(){return state;}</span>
+
+    /** This method is a getter for the current state of the Rover when turned on
+     * @return stateVehiculeOn, the current state of the Rover when turned on (i.e. turning or accelerating forward) */
+<span class="fc" id="L94">    public StateVehiculeOn getStateVehiculeOn(){return stateVehiculeOn;}</span>
+
+    /**This method illustrates the action of inserting the key and simultaneously applying pressure to the right pedal in hopes to turn the engine on
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean turnKeyPressRightPedal(){
+<span class="fc" id="L99">        boolean wasEventProcessed = false;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (state==state.engineOff){</span>
+<span class="fc" id="L101">            msg = (&quot;Initially the buggy was still with the engine off and so the key was turned and the right pedal was pressed so,&quot;);</span>
+        } else{
+<span class="fc" id="L103">            msg = (&quot;Initially the buggy was on with the engine running and so the key was turned and the right pedal was pressed so,&quot;);</span>
+        }
+<span class="fc" id="L105">        State aState = state;</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        switch (aState){case engineOff:setState(State.vehiculeOn);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="fc" id="L107">            default: msg+=noChange(stateVehiculeOn);</span>
+
+        }
+<span class="fc" id="L110">        System.out.println(msg);</span>
+<span class="fc" id="L111">        return wasEventProcessed;}</span>
+
+
+    /**This method portrays when the LEFT PEDAL is tapped TWICE in hopes to change the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressLeftPedalTwice(){
+<span class="fc" id="L117">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L118">        msg=(&quot;Initially the buggy was at &quot;+ this.stateVehiculeOn + &quot; and so the left pedal was pressed twice so,&quot;);</span>
+<span class="fc" id="L119">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="fc bfc" id="L120" title="All 3 branches covered.">        switch (aStateVehiculeOn){case park:setStateVehiculeOn(StateVehiculeOn.neutral);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="fc" id="L121">            case acceleratebackwards:setStateVehiculeOn(StateVehiculeOn.deacceleratebackwards);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="fc" id="L122">            default: msg+=noChange(stateVehiculeOn);}System.out.println(msg);</span>
+<span class="fc" id="L123">        return wasEventProcessed;}</span>
+
+    /** This method REMOVES THE KEY from the key spot in hopes to turn the Rover engine off
+     @return a Boolean that expressed if the Rover was successfully turned off*/
+    public boolean removeKey(){
+<span class="fc" id="L128">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L129">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="fc" id="L130">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the key was removed so,&quot;);</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        switch (aStateVehiculeOn){case park:setState(State.engineOff);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+            //default: msg+=noChange(stateVehiculeOn);
+        }
+<span class="fc" id="L134">        System.out.println(msg +&quot;\nEngine Off!&quot;);</span>
+<span class="fc" id="L135">        return wasEventProcessed;}</span>
+
+
+    /**This method portrays when the RIGHT PEDAL is tapped in hopes to change the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressRightPedal(){
+<span class="fc" id="L141">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L142">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the right pedal was once so,&quot;);</span>
+<span class="fc" id="L143">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        switch (aStateVehiculeOn){case neutral:setStateVehiculeOn(StateVehiculeOn.park);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="fc" id="L145">            default: msg+=noChange(stateVehiculeOn);}</span>
+<span class="fc" id="L146">        System.out.println(msg);</span>
+<span class="fc" id="L147">        return wasEventProcessed;</span>
+    }
+    /**This method portrays when the LEFT PEDAL is tapped ONCE in hopes to change the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressLeftPedalOnce(){
+<span class="fc" id="L152">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L153">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the left pedal was pressed once so,&quot;);</span>
+<span class="fc" id="L154">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">        switch (aStateVehiculeOn){case neutral:setStateVehiculeOn(StateVehiculeOn.accelerateforward);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+        }
+<span class="fc" id="L157">        System.out.println(msg);</span>
+<span class="fc" id="L158">        return wasEventProcessed;</span>
+    }
+    /**This method portrays when the LEFT PEDAL (only) is tapped and depending of the length (&gt;=5 seconds) the pressure on the pedal determine if the state of the Rover will change
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressLeftPedal(){
+<span class="fc" id="L163">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L164">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the left pedal was pressed so,&quot;);</span>
+<span class="fc" id="L165">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">        switch (aStateVehiculeOn){case neutral:</span>
+<span class="fc" id="L167">            int timer=setTime(10);</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">            if (timer&gt;=5){setStateVehiculeOn(StateVehiculeOn.acceleratebackwards);exitStateVehiculeOn(); wasEventProcessed = true;break;} else {msg += (&quot; since you held it for &quot; + timer + &quot; seconds, the Rover will remain at its current state&quot;);}break;</span>
+            //default: msg+=noChange(stateVehiculeOn);
+        }
+<span class="fc" id="L171">        System.out.println(msg);</span>
+<span class="fc" id="L172">        return wasEventProcessed;  }</span>
+
+    /**This method portrays when the RIGHT AND LEFT pedals is pressed in order to activate brakes
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressLeftRightPedal(){
+<span class="fc" id="L177">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L178">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the left and right pedal was pressed(braking) so,&quot;);</span>
+<span class="fc" id="L179">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="fc bfc" id="L180" title="All 4 branches covered.">        switch (aStateVehiculeOn){</span>
+<span class="fc" id="L181">            case accelerateforward:setStateVehiculeOn(StateVehiculeOn.brake);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+            //case constantspeedforward:setStateVehiculeOn(StateVehiculeOn.brake);exitStateVehiculeOn(); wasEventProcessed = true;break;
+            //case deaccelerateforward:setStateVehiculeOn(StateVehiculeOn.brake);exitStateVehiculeOn(); wasEventProcessed = true;break;
+            //case turn:setStateVehiculeOn(StateVehiculeOn.brake);exitStateVehiculeOn(); wasEventProcessed = true;break;
+<span class="fc" id="L185">            case deacceleratebackwards:setStateVehiculeOn(StateVehiculeOn.brake);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="fc" id="L186">            case constantspeedbackwards:setStateVehiculeOn(StateVehiculeOn.brake);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="fc" id="L187">            default: msg+=noChange(stateVehiculeOn);</span>
+        }
+<span class="fc" id="L189">        System.out.println(msg);</span>
+<span class="fc" id="L190">        return wasEventProcessed;</span>
+    }
+
+
+    /**This method portrays when the RIGHT PEDAL is tapped TWICE in hopes to change the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressRightPedalTwice(){
+<span class="fc" id="L197">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L198">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the right pedal was pressed twice so,&quot;);</span>
+<span class="fc" id="L199">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">        switch (aStateVehiculeOn){case accelerateforward:setStateVehiculeOn(StateVehiculeOn.deaccelerateforward);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+            //default: msg+=noChange(stateVehiculeOn);
+        }
+<span class="fc" id="L203">        System.out.println(msg);</span>
+<span class="fc" id="L204">        return wasEventProcessed;</span>
+    }
+    /**This method portrays when the RIGHT PEDAL is tapped ONCE and depending of the length (&gt;=5 seconds) the pressure on the pedal determine if the state of the Rover will change
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressRightPedalOnce(){
+<span class="fc" id="L209">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L210">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so the right pedal was pressed once so,&quot;);</span>
+<span class="fc" id="L211">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="pc bpc" id="L212" title="1 of 3 branches missed.">        switch (aStateVehiculeOn){</span>
+            case accelerateforward:
+<span class="fc" id="L214">                int timer=setTime(10);</span>
+<span class="pc bpc" id="L215" title="1 of 2 branches missed.">                if (timer&gt;=5){</span>
+<span class="pc" id="L216">                    setStateVehiculeOn(StateVehiculeOn.constantspeedforward);exitStateVehiculeOn(); wasEventProcessed = true;break;}else {msg += (&quot; since you held it for &quot; + timer + &quot; seconds, the camera will remain at its current state&quot;);</span>
+<span class="nc" id="L217">                }break;</span>
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">            case acceleratebackwards:timer=setTime(12);if (timer &gt;= 5){setStateVehiculeOn(StateVehiculeOn.constantspeedbackwards);exitStateVehiculeOn(); wasEventProcessed = true;break;} else {msg += (&quot; since you held it for &quot; + timer + &quot; seconds, the camera will remain at its current state&quot;);}break;</span>
+            //default: msg+=noChange(stateVehiculeOn);
+        }
+<span class="fc" id="L221">        System.out.println(msg);</span>
+<span class="fc" id="L222">        return wasEventProcessed;</span>
+    }
+    /**This method portrays when the FIRST BUTTON is pressed while pressure is applied on BOTH PEDALS and in hopes to change the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean pressButton1OnceHoldDownBothPedals(){
+<span class="fc" id="L227">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L228">        msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and so both pedals were pressed along with pushing button 1 once so,&quot;);</span>
+<span class="fc" id="L229">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="pc bpc" id="L230" title="2 of 3 branches missed.">        switch (aStateVehiculeOn){case constantspeedforward: prev1=stateVehiculeOn; setStateVehiculeOn(StateVehiculeOn.turn);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+<span class="nc" id="L231">            case constantspeedbackwards:prev1 = stateVehiculeOn; setStateVehiculeOn(StateVehiculeOn.turn);exitStateVehiculeOn(); wasEventProcessed = true;break;</span>
+            //default: msg+=noChange(stateVehiculeOn);
+        }
+<span class="fc" id="L234">        System.out.println(msg);</span>
+<span class="fc" id="L235">        return wasEventProcessed;</span>
+    }
+    /**This method portrays when the Rover releases the pressure from the RIGHT PEDAL (only) and in hopes to change the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was processed*/
+    public boolean releaseRightPedal() {
+<span class="fc" id="L240">        boolean wasEventProcessed = false;</span>
+<span class="fc" id="L241">        msg = (&quot;Initially the buggy was at &quot; + this.stateVehiculeOn+ &quot; and so the right pedal was released so,&quot;);</span>
+<span class="fc" id="L242">        StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="pc bpc" id="L243" title="1 of 2 branches missed.">        switch (aStateVehiculeOn) {</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">            case turn:if (prev1==StateVehiculeOn.constantspeedforward){setStateVehiculeOn(StateVehiculeOn.constantspeedforward);msg += (&quot;the buggy is set back to driving forward at a constant speed.&quot;);</span>
+<span class="pc bnc" id="L245" title="All 2 branches missed.">            } else if (prev1 == StateVehiculeOn.constantspeedbackwards) {setStateVehiculeOn(StateVehiculeOn.constantspeedbackwards);msg += (&quot;the buggy is set back to driving backwards at a constant speed.&quot;);}wasEventProcessed = true;break;</span>
+            //default: msg+=noChange(stateVehiculeOn);
+        }
+<span class="fc" id="L248">        System.out.println(msg);</span>
+<span class="fc" id="L249">        return wasEventProcessed;</span>
+    }
+    /** This method portrays when the Rover RELEASE the pressure from BOTH PEDALS and changes the state of the Rover
+     * @return a Boolean that expresses if the transfer of state was successful*/
+<span class="fc" id="L253">    public boolean releasePedals(){boolean wasEventProcessed = false;msg=(&quot;Initially the buggy was at &quot; + this.stateVehiculeOn + &quot; and the pedals were released so, &quot;);StateVehiculeOn aStateVehiculeOn = stateVehiculeOn;</span>
+<span class="fc bfc" id="L254" title="All 2 branches covered.">        switch (aStateVehiculeOn){case brake:setStateVehiculeOn(StateVehiculeOn.neutral);exitStateVehiculeOn(); wasEventProcessed = true;break;default: msg+=noChange(stateVehiculeOn);}</span>
+<span class="fc" id="L255">        System.out.println(msg);</span>
+<span class="fc" id="L256">        return wasEventProcessed;}</span>
+
+    /** This method an elementary step when changing gears/state of the Rover. If the Rover is moving, this method will call another method to help change gears, otherwise the Rover remains turned off*/
+    //private void exitState(){switch(state){case vehiculeOn:exitStateVehiculeOn();break;case engineOff:break;}}
+
+    /** This method is called to set the state of the Rover, based on if it is parked or not.
+     * If the state is null(the object has been just been initialized), the state is set to park.
+     * @param aState, a State-based variable that indicates if the car is parked or not
+     * @return*/
+<span class="fc" id="L265">    private void setState(State aState){state = aState;</span>
+        // entry actions and do activities
+<span class="fc bfc" id="L267" title="All 2 branches covered.">        switch(state){</span>
+            case vehiculeOn:
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">                if (stateVehiculeOn == StateVehiculeOn.Null) {</span>
+<span class="fc" id="L270">                    setStateVehiculeOn(StateVehiculeOn.park);</span>
+                }
+                break;
+<span class="fc" id="L273">            case engineOff:}}</span>
+<span class="pc bpc" id="L274" title="1 of 11 branches missed.">    private void exitStateVehiculeOn(){switch(stateVehiculeOn){</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">        case park:if(getState()==State.engineOff){msg+=(&quot; the buggy is off. &quot;);}else{</span>
+<span class="fc" id="L276">            setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be parked.&quot;);}break;</span>
+<span class="fc" id="L277">        case neutral:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be in the neutral gear.&quot;);break;</span>
+<span class="fc" id="L278">        case accelerateforward:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be accelerating forward.&quot;);break;</span>
+<span class="fc" id="L279">        case constantspeedforward:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be moving at a constant speed forward:)&quot;);break;</span>
+<span class="fc" id="L280">        case deaccelerateforward: setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be slowing(decelerating) forward. &quot;);break;</span>
+<span class="fc" id="L281">        case turn:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy is turning :)&quot;);break;</span>
+<span class="fc" id="L282">        case brake:setStateVehiculeOn(stateVehiculeOn);msg+= ( &quot; the buggy is braking.&quot;);break;</span>
+<span class="fc" id="L283">        case deacceleratebackwards:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be slowing(decelerating) backwards.&quot;);break;</span>
+<span class="fc" id="L284">        case acceleratebackwards:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be accelerating backwards.&quot;);break;</span>
+<span class="fc" id="L285">        case constantspeedbackwards:setStateVehiculeOn(stateVehiculeOn);msg+=(&quot; the buggy will be moving at a constant speed backwards. &quot;);break;</span>
+<span class="fc" id="L286">        default:break;}}</span>
+
+
+    /**This method verifies if the state provided in the parameter then sets the state of the Rover object to the parameter provided
+     * @param aStateVehiculeOn An StateVeichuleOn value represent the desired new state of the Rover
+     * @return*/
+    private void setStateVehiculeOn(StateVehiculeOn aStateVehiculeOn){
+<span class="fc" id="L293">        stateVehiculeOn = aStateVehiculeOn;</span>
+<span class="pc bpc" id="L294" title="1 of 4 branches missed.">        if (state != State.vehiculeOn &amp;&amp; aStateVehiculeOn != StateVehiculeOn.Null) {</span>
+<span class="nc" id="L295">            setState(State.vehiculeOn); }</span>
+<span class="fc" id="L296">        switch (stateVehiculeOn) {</span>
+<span class="fc" id="L297">            default:break;}  }</span>
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
