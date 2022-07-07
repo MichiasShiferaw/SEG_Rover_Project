@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="21" passed="21" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-07-06T20:43:59 EDT" name="Default suite" finished-at="2022-07-06T20:43:59 EDT" duration-ms="122">
+    <groups>
+    </groups>
+    <test started-at="2022-07-06T20:43:59 EDT" name="Default test" finished-at="2022-07-06T20:43:59 EDT" duration-ms="122">
+      <class name="TestNG">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="beforeClass" finished-at="2022-07-06T20:43:59 EDT" duration-ms="25" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method signature="RoverTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="RoverTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RoverTest -->
+        <test-method signature="getStateFullNameTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="getStateFullNameTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getStateFullNameTest -->
+        <test-method signature="getStateVehiculeOnTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="getStateVehiculeOnTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getStateVehiculeOnTest -->
+        <test-method signature="pressButton1OnceHoldDownBothPedalsTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressButton1OnceHoldDownBothPedalsTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressButton1OnceHoldDownBothPedalsTest -->
+        <test-method signature="pressLeftPedalOnceTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressLeftPedalOnceTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressLeftPedalOnceTest -->
+        <test-method signature="pressLeftPedalTwiceTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressLeftPedalTwiceTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressLeftPedalTwiceTest -->
+        <test-method signature="pressLeftRightPedalTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressLeftRightPedalTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressLeftRightPedalTest -->
+        <test-method signature="pressRightPedalOnceTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressRightPedalOnceTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressRightPedalOnceTest -->
+        <test-method signature="pressRightPedalOnceTest2()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressRightPedalOnceTest2" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressRightPedalOnceTest2 -->
+        <test-method signature="pressRightPedalTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressRightPedalTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressRightPedalTest -->
+        <test-method signature="pressRightPedalTwiceTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="pressRightPedalTwiceTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pressRightPedalTwiceTest -->
+        <test-method signature="releasePedalsTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="releasePedalsTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- releasePedalsTest -->
+        <test-method signature="releasePedalsTest2()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="releasePedalsTest2" finished-at="2022-07-06T20:43:59 EDT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- releasePedalsTest2 -->
+        <test-method signature="releaseRightPedalTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="releaseRightPedalTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- releaseRightPedalTest -->
+        <test-method signature="releaseRightPedalTest2()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="releaseRightPedalTest2" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- releaseRightPedalTest2 -->
+        <test-method signature="removeKeyTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="removeKeyTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removeKeyTest -->
+        <test-method signature="testGetState()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="testGetState" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetState -->
+        <test-method signature="testGetState2()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="testGetState2" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetState2 -->
+        <test-method signature="testPressLeftPedal()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="testPressLeftPedal" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPressLeftPedal -->
+        <test-method signature="testPressLeftPedal2()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="testPressLeftPedal2" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPressLeftPedal2 -->
+        <test-method signature="turnKeyPressRightPedalTest()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="turnKeyPressRightPedalTest" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- turnKeyPressRightPedalTest -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:TestNG@5cad8b7d]" started-at="2022-07-06T20:43:59 EDT" name="afterClass" finished-at="2022-07-06T20:43:59 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- TestNG -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
